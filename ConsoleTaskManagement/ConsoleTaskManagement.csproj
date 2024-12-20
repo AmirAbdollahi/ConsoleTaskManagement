@@ -8,15 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTOs\" />
     <Folder Include="Application\Interfaces\" />
-    <Folder Include="Application\UserCases\" />
-    <Folder Include="Domain\Entites\" />
-    <Folder Include="Domain\Interfaces\" />
     <Folder Include="Domain\Services\" />
     <Folder Include="Domain\ValueObjects\" />
     <Folder Include="Infrastructure\Repositories\" />
-    <Folder Include="Infrastructure\Persistance\" />
   </ItemGroup>
 
 </Project>
