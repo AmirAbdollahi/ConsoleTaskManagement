@@ -10,8 +10,13 @@ class Program
         var taskRepository = new InMemoryTaskRepository();
         var addTaskUseCase = new AddTaskUseCase(taskRepository);
         var editTaskUseCase = new EditTaskUseCase(taskRepository);
+        var deleteTaskUseCase = new DeleteTaskUseCase(taskRepository);
 
-        ShowMainMenu(taskRepository, addTaskUseCase, editTaskUseCase);
+        ShowMainMenu(
+            taskRepository: taskRepository,
+            addTaskUseCase: addTaskUseCase,
+            editTaskUseCase: editTaskUseCase,
+            deleteTaskUseCase: deleteTaskUseCase);
     }
 
     private static void MainMenuPrompt()
@@ -21,7 +26,11 @@ class Program
         Console.Clear();
     }
 
-    private static void ShowMainMenu(InMemoryTaskRepository taskRepository, AddTaskUseCase addTaskUseCase, EditTaskUseCase editTaskUseCase)
+    private static void ShowMainMenu(
+        InMemoryTaskRepository taskRepository, 
+        AddTaskUseCase addTaskUseCase, 
+        EditTaskUseCase editTaskUseCase,
+        DeleteTaskUseCase deleteTaskUseCase)
     {
         while (true)
         {
@@ -49,7 +58,7 @@ class Program
                     break;
 
                 case "4":
-                    DeleteTask(taskRepository);
+                    DeleteTask(deleteTaskUseCase);
                     break;
 
                 case "5":
@@ -58,13 +67,13 @@ class Program
         }
     }
 
-    private static void DeleteTask(InMemoryTaskRepository taskRepository)
+    private static void DeleteTask(DeleteTaskUseCase deleteTaskUseCase)
     {
         try
         {
             Console.Write("Enter Task ID to Delete: ");
             var id = Guid.Parse(Console.ReadLine());
-            taskRepository.DeleteTask(id);
+            deleteTaskUseCase.Execute(id);
             Console.WriteLine("Task deleted successfully!");
         }
         catch (Exception ex)
