@@ -1,5 +1,6 @@
 ﻿using ConsoleTaskManagement.Domain.Entites;
 using ConsoleTaskManagement.Domain.Interfaces;
+using Task = ConsoleTaskManagement.Domain.Entites.Task;
 
 namespace ConsoleTaskManagement.Application.UserCases
 {
@@ -15,7 +16,7 @@ namespace ConsoleTaskManagement.Application.UserCases
         public void Execute(string title, string description, DateTime dueDate, string priority)
         {
             var priorityLevel = Enum.Parse<PriorityLevel>(priority, true);
-            var task = new Domain.Entites.Task(title, description, dueDate, priorityLevel);
+            var task = new Task(title, description, dueDate, priorityLevel);
             _taskRepository.AddTask(task);
         }
     }
