@@ -19,5 +19,16 @@
             DueDate = dueDate;
             Priority = priority;
         }
+
+        public void Update(string title, string description, DateTime dueDate, PriorityLevel priority)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Task title cannot be empty.");
+
+            Title = title;
+            Description = description;
+            DueDate = dueDate;
+            Priority = priority;
+        }
     }
 }
